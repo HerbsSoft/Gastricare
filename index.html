@@ -1315,36 +1315,6 @@
             });
         }
 
-        // Test Google Sheets connection
-        async function testConnection() {
-            const statusEl = document.getElementById('sheets-status');
-            statusEl.innerHTML = '⏳ Testing...';
-            statusEl.className = 'text-amber-600';
-            const testData = {
-                type: "order",
-                name: "Test User (Connection Test)",
-                phone: "+919999999999",
-                email: "test@test.com",
-                address: "Test Address",
-                city: "Test City",
-                pincode: "400001",
-                state: "Maharashtra",
-                quantity: 1,
-                total: 999,
-                source: "Connection Test",
-                timestamp: new Date().toISOString()
-            };
-            const result = await sendToGoogleSheets(testData);
-            if (result.status === 'sent') {
-                statusEl.innerHTML = '✅ Connected & Data Sent! (Check your Google Sheet)';
-                statusEl.className = 'text-emerald-600 font-bold';
-                alert('✅ Test data sent! Open your Google Sheet to verify.\n\nNote: Because "no-cors" mode is used, the browser cannot confirm receipt — but check your Sheet to see the new row.');
-            } else {
-                statusEl.innerHTML = '❌ Error: ' + (result.error || 'Unknown');
-                statusEl.className = 'text-red-600';
-            }
-        }
-
         // Main init
         window.onload = function() {
             startCountdown();
